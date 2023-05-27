@@ -11,7 +11,6 @@ namespace DashboardApp.Models
 {
 
 
-
     public struct RevenueByDate
     {
         public string Date { get; set; }
