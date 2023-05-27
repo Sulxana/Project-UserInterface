@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dashboard", "Dashboard\Dashboard.csproj", "{BB822A09-F500-45FC-929E-D740DF240985}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashboardApp", "Dashboard\DashboardApp.csproj", "{BB822A09-F500-45FC-929E-D740DF240985}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

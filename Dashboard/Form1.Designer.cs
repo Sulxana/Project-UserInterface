@@ -1,4 +1,4 @@
-﻿namespace Dashboard
+﻿namespace DashboardApp
 {
     partial class Form1
     {
@@ -46,34 +46,34 @@
             this.btnCustomDate = new System.Windows.Forms.Button();
             this.btnOkCustomDate = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblNumberOfOrders = new System.Windows.Forms.Label();
             this.lblNumOrders = new System.Windows.Forms.Label();
+            this.lblNumberOfOrders = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotalRevenueNum = new System.Windows.Forms.Label();
             this.lblTotalRevenue = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblTotalProfitNum = new System.Windows.Forms.Label();
             this.lblTotalProfit = new System.Windows.Forms.Label();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartGrossRevenue = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartTopProducts = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.lblNumCustomers = new System.Windows.Forms.Label();
-            this.lblNumberOfCustomers = new System.Windows.Forms.Label();
-            this.lblTotalCounter = new System.Windows.Forms.Label();
-            this.lblNumSuppliers = new System.Windows.Forms.Label();
-            this.lblNumberOfSuppliers = new System.Windows.Forms.Label();
             this.lblNumProducts = new System.Windows.Forms.Label();
             this.lblNumberOfproducts = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.lblProductsUnderstock = new System.Windows.Forms.Label();
+            this.lblNumSuppliers = new System.Windows.Forms.Label();
+            this.lblNumberOfSuppliers = new System.Windows.Forms.Label();
+            this.lblTotalCounter = new System.Windows.Forms.Label();
+            this.lblNumCustomers = new System.Windows.Forms.Label();
+            this.lblNumberOfCustomers = new System.Windows.Forms.Label();
+            this.SS = new System.Windows.Forms.Panel();
             this.dgvUnderstock = new System.Windows.Forms.DataGridView();
+            this.lblProductsUnderstock = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartGrossRevenue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTopProducts)).BeginInit();
             this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.SS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUnderstock)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,20 +90,24 @@
             // dtpStartDate
             // 
             this.dtpStartDate.CustomFormat = "MMM dd, yyyy";
+            this.dtpStartDate.Enabled = false;
             this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpStartDate.Location = new System.Drawing.Point(227, 14);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(122, 22);
             this.dtpStartDate.TabIndex = 1;
+            this.dtpStartDate.Value = new System.DateTime(2022, 2, 16, 0, 0, 0, 0);
             // 
             // dtpEndDate
             // 
             this.dtpEndDate.CustomFormat = "MMM dd, yyyy";
+            this.dtpEndDate.Enabled = false;
             this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpEndDate.Location = new System.Drawing.Point(368, 14);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(122, 22);
             this.dtpEndDate.TabIndex = 2;
+            this.dtpEndDate.Value = new System.DateTime(2022, 2, 22, 0, 0, 0, 0);
             // 
             // btnThisMonth
             // 
@@ -114,6 +118,7 @@
             this.btnThisMonth.TabIndex = 3;
             this.btnThisMonth.Text = "This Month";
             this.btnThisMonth.UseVisualStyleBackColor = false;
+            this.btnThisMonth.Click += new System.EventHandler(this.btnThisMonth_Click);
             // 
             // btnLast30Days
             // 
@@ -124,6 +129,7 @@
             this.btnLast30Days.TabIndex = 4;
             this.btnLast30Days.Text = "Last 30 Days";
             this.btnLast30Days.UseVisualStyleBackColor = false;
+            this.btnLast30Days.Click += new System.EventHandler(this.btnLast30Days_Click);
             // 
             // btnToday
             // 
@@ -134,6 +140,7 @@
             this.btnToday.TabIndex = 5;
             this.btnToday.Text = "Today";
             this.btnToday.UseVisualStyleBackColor = false;
+            this.btnToday.Click += new System.EventHandler(this.btnToday_Click);
             // 
             // btnLast7Days
             // 
@@ -144,26 +151,30 @@
             this.btnLast7Days.TabIndex = 6;
             this.btnLast7Days.Text = "Last 7 Days";
             this.btnLast7Days.UseVisualStyleBackColor = false;
+            this.btnLast7Days.Click += new System.EventHandler(this.btnLast7Days_Click);
             // 
             // btnCustomDate
             // 
             this.btnCustomDate.BackColor = System.Drawing.SystemColors.Control;
-            this.btnCustomDate.Location = new System.Drawing.Point(558, 12);
+            this.btnCustomDate.Location = new System.Drawing.Point(541, 12);
             this.btnCustomDate.Name = "btnCustomDate";
-            this.btnCustomDate.Size = new System.Drawing.Size(120, 30);
+            this.btnCustomDate.Size = new System.Drawing.Size(137, 30);
             this.btnCustomDate.TabIndex = 7;
             this.btnCustomDate.Text = "Custom";
             this.btnCustomDate.UseVisualStyleBackColor = false;
+            this.btnCustomDate.Click += new System.EventHandler(this.btnCustomDate_Click);
             // 
             // btnOkCustomDate
             // 
             this.btnOkCustomDate.BackColor = System.Drawing.SystemColors.Control;
-            this.btnOkCustomDate.Location = new System.Drawing.Point(513, 12);
+            this.btnOkCustomDate.Location = new System.Drawing.Point(496, 11);
             this.btnOkCustomDate.Name = "btnOkCustomDate";
             this.btnOkCustomDate.Size = new System.Drawing.Size(39, 30);
             this.btnOkCustomDate.TabIndex = 8;
             this.btnOkCustomDate.Text = "OK";
             this.btnOkCustomDate.UseVisualStyleBackColor = false;
+            this.btnOkCustomDate.Visible = false;
+            this.btnOkCustomDate.Click += new System.EventHandler(this.btnOkCustomDate_Click);
             // 
             // panel1
             // 
@@ -175,15 +186,6 @@
             this.panel1.Size = new System.Drawing.Size(209, 63);
             this.panel1.TabIndex = 9;
             // 
-            // lblNumberOfOrders
-            // 
-            this.lblNumberOfOrders.AutoSize = true;
-            this.lblNumberOfOrders.Location = new System.Drawing.Point(14, 0);
-            this.lblNumberOfOrders.Name = "lblNumberOfOrders";
-            this.lblNumberOfOrders.Size = new System.Drawing.Size(115, 16);
-            this.lblNumberOfOrders.TabIndex = 10;
-            this.lblNumberOfOrders.Text = "Number Of Orders";
-            // 
             // lblNumOrders
             // 
             this.lblNumOrders.AutoSize = true;
@@ -193,6 +195,15 @@
             this.lblNumOrders.Size = new System.Drawing.Size(97, 29);
             this.lblNumOrders.TabIndex = 11;
             this.lblNumOrders.Text = "100000";
+            // 
+            // lblNumberOfOrders
+            // 
+            this.lblNumberOfOrders.AutoSize = true;
+            this.lblNumberOfOrders.Location = new System.Drawing.Point(14, 0);
+            this.lblNumberOfOrders.Name = "lblNumberOfOrders";
+            this.lblNumberOfOrders.Size = new System.Drawing.Size(115, 16);
+            this.lblNumberOfOrders.TabIndex = 10;
+            this.lblNumberOfOrders.Text = "Number Of Orders";
             // 
             // panel2
             // 
@@ -252,37 +263,37 @@
             this.lblTotalProfit.TabIndex = 10;
             this.lblTotalProfit.Text = "Total Profit";
             // 
-            // chart1
+            // chartGrossRevenue
             // 
             chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            this.chartGrossRevenue.ChartAreas.Add(chartArea1);
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(27, 138);
-            this.chart1.Name = "chart1";
+            this.chartGrossRevenue.Legends.Add(legend1);
+            this.chartGrossRevenue.Location = new System.Drawing.Point(27, 138);
+            this.chartGrossRevenue.Name = "chartGrossRevenue";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(777, 300);
-            this.chart1.TabIndex = 14;
-            this.chart1.Text = "chartGrossRevenue";
+            this.chartGrossRevenue.Series.Add(series1);
+            this.chartGrossRevenue.Size = new System.Drawing.Size(777, 300);
+            this.chartGrossRevenue.TabIndex = 14;
+            this.chartGrossRevenue.Text = "chartGrossRevenue";
             title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
             title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             title1.Name = "Title1";
             title1.Text = "Gross Revenue";
-            this.chart1.Titles.Add(title1);
+            this.chartGrossRevenue.Titles.Add(title1);
             // 
-            // chart2
+            // chartTopProducts
             // 
             chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
+            this.chartTopProducts.ChartAreas.Add(chartArea2);
             legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend2.Name = "Legend1";
-            this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(810, 138);
-            this.chart2.Name = "chart2";
+            this.chartTopProducts.Legends.Add(legend2);
+            this.chartTopProducts.Location = new System.Drawing.Point(810, 138);
+            this.chartTopProducts.Name = "chartTopProducts";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
             series2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -290,15 +301,15 @@
             series2.LabelForeColor = System.Drawing.Color.White;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
-            this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(372, 540);
-            this.chart2.TabIndex = 15;
-            this.chart2.Text = "chartTop5Products";
+            this.chartTopProducts.Series.Add(series2);
+            this.chartTopProducts.Size = new System.Drawing.Size(372, 540);
+            this.chartTopProducts.TabIndex = 15;
+            this.chartTopProducts.Text = "chartTop5Products";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
             title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             title2.Name = "Title1";
             title2.Text = "Top 5 Products";
-            this.chart2.Titles.Add(title2);
+            this.chartTopProducts.Titles.Add(title2);
             // 
             // panel4
             // 
@@ -314,54 +325,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(209, 220);
             this.panel4.TabIndex = 16;
-            // 
-            // lblNumCustomers
-            // 
-            this.lblNumCustomers.AutoSize = true;
-            this.lblNumCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblNumCustomers.Location = new System.Drawing.Point(12, 54);
-            this.lblNumCustomers.Name = "lblNumCustomers";
-            this.lblNumCustomers.Size = new System.Drawing.Size(97, 29);
-            this.lblNumCustomers.TabIndex = 11;
-            this.lblNumCustomers.Text = "100000";
-            // 
-            // lblNumberOfCustomers
-            // 
-            this.lblNumberOfCustomers.AutoSize = true;
-            this.lblNumberOfCustomers.Location = new System.Drawing.Point(14, 38);
-            this.lblNumberOfCustomers.Name = "lblNumberOfCustomers";
-            this.lblNumberOfCustomers.Size = new System.Drawing.Size(138, 16);
-            this.lblNumberOfCustomers.TabIndex = 10;
-            this.lblNumberOfCustomers.Text = "Number Of Customers";
-            // 
-            // lblTotalCounter
-            // 
-            this.lblTotalCounter.AutoSize = true;
-            this.lblTotalCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblTotalCounter.Location = new System.Drawing.Point(3, 0);
-            this.lblTotalCounter.Name = "lblTotalCounter";
-            this.lblTotalCounter.Size = new System.Drawing.Size(158, 29);
-            this.lblTotalCounter.TabIndex = 12;
-            this.lblTotalCounter.Text = "TotalCounter";
-            // 
-            // lblNumSuppliers
-            // 
-            this.lblNumSuppliers.AutoSize = true;
-            this.lblNumSuppliers.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblNumSuppliers.Location = new System.Drawing.Point(12, 111);
-            this.lblNumSuppliers.Name = "lblNumSuppliers";
-            this.lblNumSuppliers.Size = new System.Drawing.Size(97, 29);
-            this.lblNumSuppliers.TabIndex = 14;
-            this.lblNumSuppliers.Text = "100000";
-            // 
-            // lblNumberOfSuppliers
-            // 
-            this.lblNumberOfSuppliers.AutoSize = true;
-            this.lblNumberOfSuppliers.Location = new System.Drawing.Point(14, 95);
-            this.lblNumberOfSuppliers.Name = "lblNumberOfSuppliers";
-            this.lblNumberOfSuppliers.Size = new System.Drawing.Size(131, 16);
-            this.lblNumberOfSuppliers.TabIndex = 13;
-            this.lblNumberOfSuppliers.Text = "Number Of Suppliers";
             // 
             // lblNumProducts
             // 
@@ -382,25 +345,63 @@
             this.lblNumberOfproducts.TabIndex = 15;
             this.lblNumberOfproducts.Text = "Number Of Products";
             // 
-            // panel5
+            // lblNumSuppliers
             // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.Controls.Add(this.dgvUnderstock);
-            this.panel5.Controls.Add(this.lblProductsUnderstock);
-            this.panel5.Location = new System.Drawing.Point(242, 458);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(562, 220);
-            this.panel5.TabIndex = 17;
+            this.lblNumSuppliers.AutoSize = true;
+            this.lblNumSuppliers.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblNumSuppliers.Location = new System.Drawing.Point(12, 111);
+            this.lblNumSuppliers.Name = "lblNumSuppliers";
+            this.lblNumSuppliers.Size = new System.Drawing.Size(97, 29);
+            this.lblNumSuppliers.TabIndex = 14;
+            this.lblNumSuppliers.Text = "100000";
             // 
-            // lblProductsUnderstock
+            // lblNumberOfSuppliers
             // 
-            this.lblProductsUnderstock.AutoSize = true;
-            this.lblProductsUnderstock.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblProductsUnderstock.Location = new System.Drawing.Point(3, 0);
-            this.lblProductsUnderstock.Name = "lblProductsUnderstock";
-            this.lblProductsUnderstock.Size = new System.Drawing.Size(248, 29);
-            this.lblProductsUnderstock.TabIndex = 12;
-            this.lblProductsUnderstock.Text = "Products Understock";
+            this.lblNumberOfSuppliers.AutoSize = true;
+            this.lblNumberOfSuppliers.Location = new System.Drawing.Point(14, 95);
+            this.lblNumberOfSuppliers.Name = "lblNumberOfSuppliers";
+            this.lblNumberOfSuppliers.Size = new System.Drawing.Size(131, 16);
+            this.lblNumberOfSuppliers.TabIndex = 13;
+            this.lblNumberOfSuppliers.Text = "Number Of Suppliers";
+            // 
+            // lblTotalCounter
+            // 
+            this.lblTotalCounter.AutoSize = true;
+            this.lblTotalCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblTotalCounter.Location = new System.Drawing.Point(3, 0);
+            this.lblTotalCounter.Name = "lblTotalCounter";
+            this.lblTotalCounter.Size = new System.Drawing.Size(158, 29);
+            this.lblTotalCounter.TabIndex = 12;
+            this.lblTotalCounter.Text = "TotalCounter";
+            // 
+            // lblNumCustomers
+            // 
+            this.lblNumCustomers.AutoSize = true;
+            this.lblNumCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblNumCustomers.Location = new System.Drawing.Point(12, 54);
+            this.lblNumCustomers.Name = "lblNumCustomers";
+            this.lblNumCustomers.Size = new System.Drawing.Size(97, 29);
+            this.lblNumCustomers.TabIndex = 11;
+            this.lblNumCustomers.Text = "100000";
+            // 
+            // lblNumberOfCustomers
+            // 
+            this.lblNumberOfCustomers.AutoSize = true;
+            this.lblNumberOfCustomers.Location = new System.Drawing.Point(14, 38);
+            this.lblNumberOfCustomers.Name = "lblNumberOfCustomers";
+            this.lblNumberOfCustomers.Size = new System.Drawing.Size(138, 16);
+            this.lblNumberOfCustomers.TabIndex = 10;
+            this.lblNumberOfCustomers.Text = "Number Of Customers";
+            // 
+            // SS
+            // 
+            this.SS.BackColor = System.Drawing.Color.White;
+            this.SS.Controls.Add(this.dgvUnderstock);
+            this.SS.Controls.Add(this.lblProductsUnderstock);
+            this.SS.Location = new System.Drawing.Point(242, 458);
+            this.SS.Name = "SS";
+            this.SS.Size = new System.Drawing.Size(562, 220);
+            this.SS.TabIndex = 17;
             // 
             // dgvUnderstock
             // 
@@ -413,15 +414,25 @@
             this.dgvUnderstock.Size = new System.Drawing.Size(538, 179);
             this.dgvUnderstock.TabIndex = 17;
             // 
+            // lblProductsUnderstock
+            // 
+            this.lblProductsUnderstock.AutoSize = true;
+            this.lblProductsUnderstock.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblProductsUnderstock.Location = new System.Drawing.Point(3, 0);
+            this.lblProductsUnderstock.Name = "lblProductsUnderstock";
+            this.lblProductsUnderstock.Size = new System.Drawing.Size(248, 29);
+            this.lblProductsUnderstock.TabIndex = 12;
+            this.lblProductsUnderstock.Text = "Products Understock";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1191, 690);
-            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.chartTopProducts);
+            this.Controls.Add(this.SS);
             this.Controls.Add(this.panel4);
-            this.Controls.Add(this.chart2);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.chartGrossRevenue);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -442,12 +453,12 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartGrossRevenue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTopProducts)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.SS.ResumeLayout(false);
+            this.SS.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUnderstock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -474,8 +485,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lblTotalProfitNum;
         private System.Windows.Forms.Label lblTotalProfit;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartGrossRevenue;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTopProducts;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lblNumCustomers;
         private System.Windows.Forms.Label lblNumberOfCustomers;
@@ -484,7 +495,7 @@
         private System.Windows.Forms.Label lblNumberOfproducts;
         private System.Windows.Forms.Label lblNumSuppliers;
         private System.Windows.Forms.Label lblNumberOfSuppliers;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel SS;
         private System.Windows.Forms.DataGridView dgvUnderstock;
         private System.Windows.Forms.Label lblProductsUnderstock;
     }

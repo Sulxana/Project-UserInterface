@@ -23,11 +23,11 @@ namespace DashboardApp.Models
         private DateTime endDate;
         private int numberDays;
 
-        public int NumCustomers { get; set; }
-        public int NumSuppliers { get; set; }
-        public int NumProducts { get; set; }
-        public List<KeyValuePair<string, int>> TopProductsList { get; set; }
-        public List<KeyValuePair<string, int>> UnderStockList { get; set; }
+        public int NumCustomers { get; private set; }
+        public int NumSuppliers { get; private set; }
+        public int NumProducts { get; private set; }
+        public List<KeyValuePair<string, int>> TopProductsList { get; private set; }
+        public List<KeyValuePair<string, int>> UnderStockList { get; private set; }
         public List<RevenueByDate> GrossRevenueList { get; set; }
         public int NumOrders { get; set; }
         public decimal TotalRevenue { get; set; }
@@ -59,7 +59,7 @@ namespace DashboardApp.Models
 
                     //Get total number of Products
                     command.CommandText = "select count(id) from Product";
-                    NumCustomers = (int)command.ExecuteScalar();
+                    NumProducts = (int)command.ExecuteScalar();
 
                     //Get total number of Orders
                     command.CommandText = @"select count(id) from [Order]" + " where OrderDate between @fromDate and @toDate";
@@ -171,12 +171,12 @@ namespace DashboardApp.Models
 
                     //Get Top 5 Products
                     command.CommandText = @"select top 5 P.ProductName, sum(OrderItem.Quantity)as Q
-                                        from OrderItem
-                                        inner join Product P on P.Id = OrderItem.ProductId
-                                        inner join [Order] O on O.Id = OrderItem.OrderId
-                                        where OrderDate between @fromDate and @toDate
-                                        group by P.ProductName
-                                        order by Q desc";
+                                            from OrderItem
+                                            inner join Product P on P.Id = OrderItem.ProductId
+                                            inner join [Order] O on O.Id = OrderItem.OrderId
+                                            where OrderDate between @fromDate and @toDate
+                                            group by P.ProductName
+                                            order by Q desc";
                     command.Parameters.Add("@fromDate", System.Data.SqlDbType.DateTime).Value = startDate;
                     command.Parameters.Add("@toDate", System.Data.SqlDbType.DateTime).Value = endDate;
                     reader = command.ExecuteReader();
@@ -216,6 +216,7 @@ namespace DashboardApp.Models
                 GetNumberItems();
                 GetProductAnalisys();
                 GetOrderAnalisys();
+                Console.WriteLine("Refreshed data : {0} - {1}", startDate.ToString(), endDate.ToString());
                 return true;
             }
             else
