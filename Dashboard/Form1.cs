@@ -38,7 +38,7 @@ namespace DashboardApp
                 lblNumSuppliers.Text = model.NumSuppliers.ToString();
                 lblNumProducts.Text = model.NumProducts.ToString();
 
-                chartGrossRevenue.DataSource = model.GrossRevenueList;
+                 chartGrossRevenue.DataSource = model.GrossRevenueList;
                 chartGrossRevenue.Series[0].XValueMember = "Date";
                 chartGrossRevenue.Series[0].YValueMembers = "TotalAmount";
                 chartGrossRevenue.DataBind();

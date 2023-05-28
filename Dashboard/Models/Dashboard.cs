@@ -82,12 +82,9 @@ namespace DashboardApp.Models
                 using (var command = new SqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = @"select OrderDate, sum(TotalAmount)
-                                        from [Order]
-                                        where OrderDate between @fromDate and @toDate
-                                        group by OrderDate";
                     command.Parameters.Add("@fromDate", System.Data.SqlDbType.DateTime).Value = startDate;
                     command.Parameters.Add("@toDate", System.Data.SqlDbType.DateTime).Value = endDate;
+                    command.CommandText = @"select OrderDate, sum(TotalAmount) from [UserInterface].[dbo].[Order] where OrderDate between @fromDate and @toDate group by OrderDate";
 
                     var reader = command.ExecuteReader();
                     var resultTable = new List<KeyValuePair<DateTime, decimal>>();
@@ -95,7 +92,7 @@ namespace DashboardApp.Models
                     {
                         resultTable.Add(
                             new KeyValuePair<DateTime, decimal>((DateTime)reader[0], (decimal)reader[1]));
-                        TotalRevenue += (decimal)reader[0];
+                        TotalRevenue += (decimal)reader[1];
                     }
                     TotalProfit = TotalRevenue * 0.2m; //20%
                     reader.Close();
