@@ -18,5 +18,7 @@ namespace DashboardApp.Db
         {
             return new SqlConnection(connectionString);
         }
+
+
     }
 }

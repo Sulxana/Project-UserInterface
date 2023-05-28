@@ -50,15 +50,15 @@ namespace DashboardApp.Models
                     command.Connection = connection;
 
                     //Get total number of Customers
-                    command.CommandText = "select count(id) from Customer";
+                    command.CommandText = "Select count(id) from Customer";
                     NumCustomers = (int)command.ExecuteScalar();
 
                     //Get total number of Suppliers
-                    command.CommandText = "select count(id) from Supplier";
+                    command.CommandText = "Select count(id) from Supplier";
                     NumSuppliers = (int)command.ExecuteScalar();
 
                     //Get total number of Products
-                    command.CommandText = "select count(id) from Product";
+                    command.CommandText = "Select count(id) from Product";
                     NumProducts = (int)command.ExecuteScalar();
 
                     //Get total number of Orders
@@ -100,8 +100,22 @@ namespace DashboardApp.Models
                     TotalProfit = TotalRevenue * 0.2m; //20%
                     reader.Close();
 
+                    //group by hours
+                    if (numberDays<=1)
+                    {
+                        GrossRevenueList = (from orderList in resultTable
+                                            group orderList by orderList.Key.ToString("hh tt")
+                                            into order
+                                            select new RevenueByDate
+                                            {
+                                                Date = order.Key,
+                                                TotalAmount = order.Sum(amount => amount.Value)
+                                            }).ToList();
+
+                    }
+
                     //Group by Days
-                    if (numberDays <= 30)
+                    else if (numberDays <= 30)
                     {
                         foreach (var item in resultTable)
                         {
@@ -170,7 +184,7 @@ namespace DashboardApp.Models
                     command.Connection = connection;
 
                     //Get Top 5 Products
-                    command.CommandText = @"select top 5 P.ProductName, sum(OrderItem.Quantity)as Q
+                    command.CommandText = @"select top 5 P.ProductName, sum(OrderItem.Quantity) as Q
                                             from OrderItem
                                             inner join Product P on P.Id = OrderItem.ProductId
                                             inner join [Order] O on O.Id = OrderItem.OrderId
@@ -189,8 +203,8 @@ namespace DashboardApp.Models
 
                     //Get Understock Products
                     command.CommandText = @"select ProductName,Stock
-                                        from Product
-                                        where Stock<=6 and IsDiscontinued=0";
+                                            from Product
+                                            where Stock<=6 and IsDiscontinued=0";
                     reader = command.ExecuteReader();
                     while (reader.Read())
                     {
