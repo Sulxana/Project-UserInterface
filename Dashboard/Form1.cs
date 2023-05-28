@@ -57,7 +57,7 @@ namespace DashboardApp
                 Console.WriteLine("View not loaded, same query");
             }
         }
-        private void DisableCustomDates()
+        private void SetDateMenuButtonsUI()
         {
             dtpStartDate.Enabled = false;
             dtpEndDate.Enabled = false;
@@ -69,15 +69,15 @@ namespace DashboardApp
             dtpStartDate.Value = DateTime.Today;
             dtpEndDate.Value = DateTime.Now;
             LoadData();
-            DisableCustomDates();
+            SetDateMenuButtonsUI();
         }
-
+        
         private void btnLast7Days_Click(object sender, EventArgs e)
         {
             dtpStartDate.Value = DateTime.Today.AddDays(-7);
             dtpEndDate.Value = DateTime.Now;
             LoadData();
-            DisableCustomDates();
+            SetDateMenuButtonsUI();
         }
 
         private void btnLast30Days_Click(object sender, EventArgs e)
@@ -85,7 +85,7 @@ namespace DashboardApp
             dtpStartDate.Value = DateTime.Today.AddDays(-30);
             dtpEndDate.Value = DateTime.Now;
             LoadData();
-            DisableCustomDates();
+            SetDateMenuButtonsUI();
         }
 
         private void btnThisMonth_Click(object sender, EventArgs e)
@@ -93,7 +93,7 @@ namespace DashboardApp
             dtpStartDate.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             dtpEndDate.Value = DateTime.Now;
             LoadData();
-            DisableCustomDates();
+            SetDateMenuButtonsUI();
         }
 
         private void btnCustomDate_Click(object sender, EventArgs e)
