@@ -170,6 +170,8 @@ namespace DashboardApp
         {
             lblStartDate.Text = dtpStartDate.Text;
             lblEndDate.Text = dtpEndDate.Text;
+
+            dgvUnderstock.Columns[1].Width = 100;
         }
     }
 }
