@@ -11,7 +11,7 @@ namespace DashboardApp
             InitializeComponent();
         }
 
-        OleDbConnection connectionString2 = new OleDbConnection("Server=(local); DataBase=db_users; Integrated Security=true");
+        OleDbConnection connectionString2 = new OleDbConnection("Server=(local); DataBase=db_users; Integrated Security=true; Provider=SQLOLEDB");
         OleDbCommand cmd = new OleDbCommand();
         OleDbDataAdapter da = new OleDbDataAdapter();
         private void button1_Click(object sender, EventArgs e)
