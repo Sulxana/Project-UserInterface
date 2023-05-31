@@ -22,7 +22,6 @@ namespace DashboardApp
             SetDateMenuButtonsUI(btnLast7Days);
             model = new Dashboard();
             LoadData();
-
         }
         //private Method
         private void LoadData()

@@ -12,7 +12,7 @@ namespace DashboardApp
             InitializeComponent();
         }
 
-        OleDbConnection connectionString2 = new OleDbConnection("Server=(local); DataBase=db_users; Integrated Security=true; Provider=SQLOLEDB");
+        OleDbConnection connectionString2 = new OleDbConnection("Provider=sqloledb;Data Source=Gio;Initial Catalog=db_users;Integrated Security=SSPI;");
         OleDbCommand cmd = new OleDbCommand();
         OleDbDataAdapter da = new OleDbDataAdapter();       
 
